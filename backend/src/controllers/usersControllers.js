@@ -1,46 +1,58 @@
-/* import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import db from '../config/database';
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import connect from "../api/database";
 
-export const register = (req, res) => {
-  const { dni, email, nombre, apellido, password } = req.body;
-  bcrypt.hash(password, 10, (err, hash) => {
-    if (err) res.status(500).send(err);
-    db.execute(
-      'INSERT INTO users (dni, email, nombre, apellido, password_hash) VALUES (?, ?, ?, ?, ?)',
-      [dni, email, nombre, apellido, hash],
-      (err, results) => {
-        if (err) res.status(500).send(err);
-        res.status(200).send('Usuario registrado exitosamente');
-      }
+export const saveRegister = async (req, res) => {
+  const { dni, email, nombre, apellido, user_password } = req.body;
+  if (!dni || !email || !nombre || !apellido || !user_password) {
+    return res.status(400).send("Todos los campos son obligatorios");
+  }
+
+  try {
+    const connection = await connect();
+    const hash = await bcrypt.hash(user_password, 10);
+    const [results] = await connection.execute(
+      "INSERT INTO users (dni, email, nombre, apellido, password_hash) VALUES (?, ?, ?, ?, ?)",
+      [dni, email, nombre, apellido, hash]
     );
-  });
+    res.status(200).send("Usuario registrado exitosamente");
+  } catch (err) {
+    res.status(500).send("Error al registrar usuario");
+  }
 };
 
-export const login = (req, res) => {
-  const { dni, password } = req.body;
-  db.execute(
-    'SELECT * FROM users WHERE dni = ?',
-    [dni],
-    (err, results) => {
-      if (err) res.status(500).send(err);
-      if (results.length === 0) res.status(401).send('Usuario no encontrado');
-      bcrypt.compare(password, results[0].password_hash, (err, isMatch) => {
-        if (err) res.status(500).send(err);
-        if (isMatch) {
-          const token = jwt.sign({ id: results[0].id }, 'tu_secreto', { expiresIn: '1h' });
-          res.status(200).send({ token });
-        } else res.status(401).send('Contraseña incorrecta');
-      });
+export const LoginCtrl = async (req, res) => {
+  const { dni, user_password } = req.body;
+
+  try {
+    const connection = await connect();
+    const [results] = await connection.execute(
+      "SELECT * FROM users WHERE dni = ?",
+      [dni]
+    );
+
+    if (results.length === 0) {
+      return res.status(401).send("Usuario no encontrado");
     }
-  );
+
+    const user = results[0];
+    const isMatch = await bcrypt.compare(user_password, user.user_password);
+
+    if (isMatch) {
+      const token = jwt.sign({ id: user.id }, "tu_secreto", {
+        expiresIn: "1h",
+      });
+      return res.status(200).send({ token });
+    } else {
+      return res.status(401).send("Contraseña incorrecta");
+    }
+  } catch (err) {
+    return res.status(500).send("Error al iniciar sesión");
+  }
 };
- */
 
-import {connect} from '../api/database'
-
-export const getUsers = async (req,res) => {
-  const[rows] = await (await connect()).execute('SELECT * FROM users')
-  console.log(rows)
-  res.send('hello word')
-}
+export const getUsers = async (req, res) => {
+  const db = await connect();
+  const [rows] = await db.query("SELECT * from users");
+  res.json(rows);
+};
