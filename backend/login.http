@@ -1,0 +1,8 @@
+@api = http://localhost:3000/users
+
+
+GET {{api}}
+
+###
+
+POST {{api}}
