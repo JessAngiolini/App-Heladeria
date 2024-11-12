@@ -9,7 +9,7 @@ const passAppGmail = "cthe uadu gkbx ozpz"; //token de google
 
 let users = [
     {
-        email: 'jlangiolini@gmail.com', resetToken: null, resetTokenExp: null
+        email: 'acavaelmail@gmail.com', resetToken: null, resetTokenExp: null
     }
 ]
 
