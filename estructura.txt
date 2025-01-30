@@ -1,0 +1,151 @@
+📦 HeladeriaApp
+│
+├── 📂 backend
+│   ├── .env
+│   ├── .gitignore
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── server.js
+│   ├── heladeria_db.sql
+│   │
+│   ├── 📂 src
+│   │   ├── 📂 config
+│   │   │   ├── db.js
+│   │   │   ├── cloudinary.js
+│   │   │   ├── passport.js
+│   │   │   └── dotenvConfig.js
+│   │   │
+│   │   ├── 📂 models
+│   │   │   ├── User.js
+│   │   │   ├── Order.js
+│   │   │   ├── Product.js
+│   │   │   ├── Category.js
+│   │   │   └── Promotion.js
+│   │   │
+│   │   ├── 📂 middleware
+│   │   │   ├── authMiddleware.js
+│   │   │   ├── errorHandler.js
+│   │   │   └── validateRequest.js
+│   │   │
+│   │   ├── 📂 controllers
+│   │   │   ├── authController.js
+│   │   │   ├── orderController.js
+│   │   │   ├── productController.js
+│   │   │   ├── categoryController.js
+│   │   │   ├── userController.js
+│   │   │   ├── adminController.js
+│   │   │   └── promotionController.js
+│   │   │
+│   │   ├── 📂 routes
+│   │   │   ├── authRoutes.js
+│   │   │   ├── orderRoutes.js
+│   │   │   ├── productRoutes.js
+│   │   │   ├── categoryRoutes.js
+│   │   │   ├── userRoutes.js
+│   │   │   ├── adminRoutes.js
+│   │   │   └── promotionRoutes.js
+│   │   │
+│   │   ├── 📂 services
+│   │   │   ├── authService.js
+│   │   │   ├── orderService.js
+│   │   │   ├── productService.js
+│   │   │   ├── userService.js
+│   │   │   └── emailService.js
+│   │   │
+│   │   ├── 📂 public
+│   │   │   ├── reset-password.html
+│   │   │   └── styles.css
+│   │   │
+│   │   ├── 📂 tests
+│   │   │   ├── auth.test.js
+│   │   │   ├── product.test.js
+│   │   │   └── order.test.js
+│   │   │
+│   │   ├── app.js
+│   │   ├── index.js
+│   │   └── seedData.js
+│
+├── 📂 frontend
+│   ├── .gitignore
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── app.json
+│   ├── babel.config.js
+│   │
+│   ├── 📂 src
+│   │   ├── 📂 assets
+│   │   │   ├── icons/
+│   │   │   ├── images/
+│   │   │   └── styles/
+│   │   │
+│   │   ├── 📂 api
+│   │   │   ├── authApi.js
+│   │   │   ├── orderApi.js
+│   │   │   ├── productApi.js
+│   │   │   ├── categoryApi.js
+│   │   │   └── userApi.js
+│   │   │
+│   │   ├── 📂 components
+│   │   │   ├── UI/
+│   │   │   ├── Cart/
+│   │   │   ├── Products/
+│   │   │   └── Auth/
+│   │   │
+│   │   ├── 📂 contexts
+│   │   │   ├── AuthContext.js
+│   │   │   ├── CartContext.js
+│   │   │   ├── ThemeContext.js
+│   │   │   └── NotificationContext.js
+│   │   │
+│   │   ├── 📂 hooks
+│   │   │   ├── useAuth.js
+│   │   │   ├── useCart.js
+│   │   │   ├── useTheme.js
+│   │   │   └── useFetch.js
+│   │   │
+│   │   ├── 📂 navigation
+│   │   │   ├── AppNavigator.js
+│   │   │   ├── AdminNavigator.js
+│   │   │   ├── UserNavigator.js
+│   │   │   └── AuthNavigator.js
+│   │   │
+│   │   ├── 📂 screens
+│   │   │   ├── 📂 admin
+│   │   │   │   ├── ManageOrdersScreen.js
+│   │   │   │   ├── ManageProductsScreen.js
+│   │   │   │   ├── ManageUsersScreen.js
+│   │   │   │   ├── AdminDashboard.js
+│   │   │   │   └── AdminSettings.js
+│   │   │   │
+│   │   │   ├── 📂 auth
+│   │   │   │   ├── LoginScreen.js
+│   │   │   │   ├── SignupScreen.js
+│   │   │   │   ├── ForgotPasswordScreen.js
+│   │   │   │   └── ResetPasswordScreen.js
+│   │   │   │
+│   │   │   ├── 📂 user
+│   │   │   │   ├── HomeScreen.js
+│   │   │   │   ├── ProductScreen.js
+│   │   │   │   ├── CartScreen.js
+│   │   │   │   ├── ProfileScreen.js
+│   │   │   │   └── OrdersScreen.js
+│   │   │   │
+│   │   │   └── SplashScreen.js
+│   │   │
+│   │   ├── 📂 services
+│   │   │   ├── authService.js
+│   │   │   ├── cartService.js
+│   │   │   ├── productService.js
+│   │   │   └── notificationService.js
+│   │   │
+│   │   ├── 📂 utils
+│   │   │   ├── helpers.js
+│   │   │   ├── validations.js
+│   │   │   └── constants.js
+│   │   │
+│   │   ├── App.js
+│   │   ├── index.js
+│   │   ├── theme.js
+│   │   └── store.js
+│
+└── README.md
